@@ -57,7 +57,7 @@ export class EmployeeFormComponent implements OnInit {
     this.departmentGroup$ = this.departmentGroupService
     .getByDepartmentId(Number(value.id)).pipe(map(res => res.data));
 
-    this.departmentGroupDp = [];
+    // this.departmentGroupDp = [];
 
     this.departmentGroup$.subscribe((result)=>{
       console.log(result)

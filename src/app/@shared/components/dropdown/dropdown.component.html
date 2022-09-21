@@ -8,7 +8,7 @@
       [items]="items"
       bindLabel="label"
       bindValue="value"
-      placeholder="Select Department"
+      placeholder="{{placeHolder}}"
       [(ngModel)]="item"
       (ngModelChange)="onValueChange($event)">
     </ng-select>

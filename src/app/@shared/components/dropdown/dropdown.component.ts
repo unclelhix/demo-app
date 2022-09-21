@@ -14,7 +14,7 @@ export class DropdownComponent implements OnInit {
   @Input() items: DropDown[] = [];
   @Input() labelFor: string = '';
   @Input() labelText: string = '';
-  // @Input() dropdownModel = {} as DropDown;
+  @Input() placeHolder: string = '';
   @Output() itemValueChange = new EventEmitter<any>();
 
   constructor() { }
