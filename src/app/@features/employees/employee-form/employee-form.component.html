@@ -5,15 +5,21 @@
     </div>
     <div class="card-body">
       <form [formGroup]="frmEmloyee">
+
         <app-dropdown
-        [items]="departments$"
-        [dropdownModel]="departmentModel"
-        (itemValueChange)="departmentEventHanlder($event)">
+          [items]="departmentDp"
+          [labelFor]="'department'"
+          [labelText]="'Department'"
+          (itemValueChange)="departmentEventHanlder($event)"
+        >
         </app-dropdown>
+
         <app-dropdown
-        [items]="departmentGroup$"
-        [dropdownModel]="departmentGroupModel"
-        (itemValueChange)="departmentGroupEventHanlder($event)">
+          [items]="departmentGroupDp"
+          [labelFor]="'departmentGroup'"
+          [labelText]="'Department Group'"
+          (itemValueChange)="departmentGroupEventHanlder($event)"
+        >
         </app-dropdown>
 
       <!-- <h5 class="card-title">Special title treatment</h5> -->

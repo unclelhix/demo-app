@@ -1,12 +1,15 @@
 
 <div class="mb-3 row">
-  <label for="department" class="col-sm-3 col-form-label">{{dropdownModel.label}}</label>
+  <label for="{{labelFor}}"
+  class="col-sm-3 col-form-label">
+  {{labelText}}</label>
   <div class="col-sm-9">
     <ng-select
-      [items]="items | async"
-      bindLabel="description"
+      [items]="items"
+      bindLabel="label"
+      bindValue="value"
       placeholder="Select Department"
-      [(ngModel)]="item$"
+      [(ngModel)]="item"
       (ngModelChange)="onValueChange($event)">
     </ng-select>
   </div>
