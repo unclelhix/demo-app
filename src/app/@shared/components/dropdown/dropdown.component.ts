@@ -2,7 +2,8 @@ import { Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, 
 import {  ControlValueAccessor,   NG_VALUE_ACCESSOR } from '@angular/forms';
 // import { DropDown } from '@shared/models/dropdown.model';
 import { Observable } from 'rxjs';
-const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
+
+const DROPDOWN_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => DropdownComponent),
   multi: true,
@@ -12,9 +13,7 @@ const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css'],
-   // STEP 1
-   providers: [COUNTRY_CONTROL_VALUE_ACCESSOR
-  ]
+   providers: [DROPDOWN_VALUE_ACCESSOR]
 })
 export class DropdownComponent<T> implements OnInit, OnChanges,ControlValueAccessor   {
 
