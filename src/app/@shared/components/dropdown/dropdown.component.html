@@ -5,9 +5,8 @@
   {{labelText}}</label>
   <div class="col-sm-9">
     <ng-select
-      [items]="items"
-      bindLabel="label"
-      bindValue="value"
+      [items]="items | async"
+      bindLabel="description"
       placeholder="{{placeHolder}}"
       [(ngModel)]="item"
       (ngModelChange)="onValueChange($event)">

@@ -1,28 +1,69 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DropDown } from '@shared/models/dropdown.model';
+import { Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, Provider, SimpleChanges } from '@angular/core';
+import {  ControlValueAccessor,   NG_VALUE_ACCESSOR } from '@angular/forms';
+// import { DropDown } from '@shared/models/dropdown.model';
 import { Observable } from 'rxjs';
-
+const COUNTRY_CONTROL_VALUE_ACCESSOR: Provider = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => DropdownComponent),
+  multi: true,
+};
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css']
+  styleUrls: ['./dropdown.component.css'],
+   // STEP 1
+   providers: [COUNTRY_CONTROL_VALUE_ACCESSOR
+  ]
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent<T> implements OnInit, OnChanges,ControlValueAccessor   {
 
-  item: DropDown = {} as DropDown;
-  @Input() items: DropDown[] = [];
+  public item: T = {} as T;
+  @Input() items = new  Observable<T[]>;
   @Input() labelFor: string = '';
   @Input() labelText: string = '';
   @Input() placeHolder: string = '';
   @Output() itemValueChange = new EventEmitter<any>();
 
-  constructor() { }
+  touched = false;
+  disabled = false;
+
+  constructor(){}
 
   ngOnInit() {
 
   }
+
+  onTouched = () => {};
+  onChange = (obj: T) => {};
+
+  writeValue(obj: T): void {
+    this.item = obj;
+  }
+  registerOnChange(onChange: any) {
+    this.onChange = onChange;
+  }
+  registerOnTouched(onTouched: any) {
+    this.onTouched = onTouched;
+  }
+  markAsTouched() {
+    if (!this.touched) {
+      this.onTouched();
+      this.touched = true;
+    }
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.item = {} as T;
+  }
+
   onValueChange(value: any) {
+    this.onTouched(); // <-- mark as touched
+    this.onChange(value); // <-- call function to let know of a change
     this.itemValueChange.emit(value);
   }
 }
