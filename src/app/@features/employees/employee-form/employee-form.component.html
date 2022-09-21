@@ -5,13 +5,24 @@
     </div>
     <div class="card-body">
       <form [formGroup]="frmEmloyee">
+        <app-dropdown
+        [items]="departments$"
+        [dropdownModel]="departmentModel"
+        (itemValueChange)="departmentEventHanlder($event)">
+        </app-dropdown>
+        <app-dropdown
+        [items]="departmentGroup$"
+        [dropdownModel]="departmentGroupModel"
+        (itemValueChange)="departmentGroupEventHanlder($event)">
+        </app-dropdown>
+
       <!-- <h5 class="card-title">Special title treatment</h5> -->
-      <app-department-dropdown
-      (departmentValueChange)="departmentEventHanlder($event)">
+      <!-- <app-department-dropdown
+        (departmentValueChange)="departmentEventHanlder($event)">
       </app-department-dropdown>
       <app-department-group-dropdown [department]="department"
-      (departmentGroupValueChange)="departmentDropdownEventHanlder($event)"      >
-      </app-department-group-dropdown>
+        (departmentGroupValueChange)="departmentDropdownEventHanlder($event)">
+      </app-department-group-dropdown> -->
     </form>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>

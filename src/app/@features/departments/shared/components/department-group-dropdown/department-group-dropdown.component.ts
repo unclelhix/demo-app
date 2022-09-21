@@ -20,20 +20,18 @@ export class DepartmentGroupDropdownComponent implements OnInit, OnChanges {
   constructor(private departmentGroupService: DepartmentDropdownService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-
     let change = changes['department'];
-
     if (Object.keys(change.currentValue).length > 0){
       this.departmentGroup$ = {} as DepartmentGroup;
-
       this.departmentGroups$ = this.departmentGroupService
-      .getByDepartmentId(Number(this.department.id)).pipe(map(res => res.data));
+      .getByDepartmentId(Number(change.currentValue.id)).pipe(map(res => res.data));
     }
   }
 
   ngOnInit() {
 
   }
+
   onValueChange(value: any) {
     this.departmentGroupValueChange.emit(value);
   }
