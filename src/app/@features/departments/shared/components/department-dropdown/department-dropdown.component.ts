@@ -14,7 +14,7 @@ import { DepartmentService } from '../../services/department.service';
 export class DepartmentDropdownComponent implements OnInit {
   departments$ = new Observable<Department[]>;
   department$:Department = {} as Department;
-  @Output() departmentValueChange = new EventEmitter<number>();
+  @Output() departmentValueChange = new EventEmitter<Department>();
 
   constructor(private departmentService: DepartmentService) {}
 
@@ -25,7 +25,6 @@ export class DepartmentDropdownComponent implements OnInit {
   }
 
   onValueChange(value:any){
-    console.log(value)
     this.departmentValueChange.emit(value);
   }
 }

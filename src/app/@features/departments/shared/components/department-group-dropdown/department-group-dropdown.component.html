@@ -1,3 +1,13 @@
-<p>
-  department-group-dropdown works!
-</p>
+
+<div class="mb-3 row">
+  <label for="department" class="col-sm-3 col-form-label">Department Group</label>
+  <div class="col-sm-9">
+    <ng-select
+      [items]="departmentGroups$ | async"
+      bindLabel="description"
+      placeholder="Select Department Group"
+      [(ngModel)]="departmentGroup$"
+      (ngModelChange)="onValueChange($event)">
+    </ng-select>
+  </div>
+</div>

@@ -10,6 +10,7 @@ import { DepartmentsComponent } from './departments/departments.component';
 import { SharedModule } from '@shared/shared.module';
 import { DepartmentService } from './departments/shared/services/department.service';
 import { EmployeeFormComponent } from './employees/employee-form/employee-form.component';
+import { DepartmentDropdownService } from './departments/shared/services/department-dropdown.service';
 
 
 
@@ -30,7 +31,8 @@ import { EmployeeFormComponent } from './employees/employee-form/employee-form.c
     ...fromComponents.components,
   ],
   providers:[
-    DepartmentService
+    DepartmentService,
+    DepartmentDropdownService
   ]
 })
 export class FeatureModule { }

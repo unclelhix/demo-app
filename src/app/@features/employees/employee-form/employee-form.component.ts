@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DepartmentGroup } from '@features/departments/shared/models/department-group.model';
+import { Department } from '@features/departments/shared/models/department.model';
 
 @Component({
   selector: 'app-employee-form',
@@ -8,7 +10,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class EmployeeFormComponent implements OnInit {
   frmEmloyee:FormGroup = {} as FormGroup;
-  departmentId: number = 0;
+  department: Department = {} as Department;
+  departmentGroup: DepartmentGroup = {} as DepartmentGroup;
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -16,6 +20,10 @@ export class EmployeeFormComponent implements OnInit {
   }
   departmentEventHanlder(value: any){
     console.log(value)
-    this.departmentId = value.id;
+    this.department = value;
+  }
+
+  departmentDropdownEventHanlder(value: any){
+    this.departmentGroup = value;
   }
 }
