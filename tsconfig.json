@@ -21,12 +21,21 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths":{
+      "@features/*":[ "src/app/@features/*"],
+      "@shared.common/*":[ "src/app/@shared.common/*"],
+      "@shared/*":[ "src/app/@shared/*"],
+      "@core/*":[ "src/app/@core/*"],
+      "@modules/*":[ "src/app/@modules/*"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false
   }
 }

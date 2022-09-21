@@ -1,0 +1,14 @@
+
+  <div class="card"  style="width: 40rem;">
+    <div class="card-header">
+      Employee Form
+    </div>
+    <div class="card-body">
+      <form [formGroup]="frmEmloyee">
+      <!-- <h5 class="card-title">Special title treatment</h5> -->
+      <app-department-dropdown  (departmentValueChange)="departmentEventHanlder($event)"></app-department-dropdown>
+
+    </form>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>

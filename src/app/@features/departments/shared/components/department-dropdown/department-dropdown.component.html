@@ -1,0 +1,13 @@
+
+<div class="mb-3 row">
+  <label for="department" class="col-sm-3 col-form-label">Department</label>
+  <div class="col-sm-9">
+    <ng-select
+      [items]="departments$ | async"
+      bindLabel="description"
+      placeholder="Select Department"
+      [(ngModel)]="department$"
+      (ngModelChange)="onValueChange($event)">
+    </ng-select>
+  </div>
+</div>
