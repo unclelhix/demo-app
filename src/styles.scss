@@ -5,6 +5,28 @@
 .control-label{
 padding-right:10px;
 }
+.required-asterisk{
+  color: red;
+  font-weight: bold;
+  margin-left: 3px;
+  font-size: 1.2em;
+}
+// /* Border Color */
+// .ng-select .ng-invalid .ng-touched .ng-select-container{
+//   border-color: red;
+// }
+// /* Arrow Color */
+// .ng-select .ng-invalid .ng-touched .ng-arrow-wrapper .ng-arrow{
+//   border-color: red transparent transparent
+// }
+// /* Placeholder Color */
+// .ng-select .ng-invalid .ng-touched .ng-select-container .ng-placeholder{
+//   color: red;
+// }
+// .ng-invalid .ng-touched {
+//   border-color: red;
+// }
+
 /* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
 @import "~@ng-select/ng-select/themes/default.theme.css";

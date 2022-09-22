@@ -15,13 +15,14 @@ const DROPDOWN_VALUE_ACCESSOR: Provider = {
   styleUrls: ['./dropdown.component.css'],
    providers: [DROPDOWN_VALUE_ACCESSOR]
 })
-export class DropdownComponent<T> implements OnInit, OnChanges,ControlValueAccessor   {
+export class DropdownComponent<T> implements OnInit, OnChanges, ControlValueAccessor   {
 
   public item: T = {} as T;
   @Input() items = new  Observable<T[]>;
   @Input() labelFor: string = '';
   @Input() labelText: string = '';
   @Input() placeHolder: string = '';
+  @Input() required:boolean = false;
   @Output() itemValueChange = new EventEmitter<any>();
 
   touched = false;

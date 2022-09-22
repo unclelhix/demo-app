@@ -1,15 +1,20 @@
 
 <div class="mb-3 row">
-  <label for="{{labelFor}}"
-  class="col-sm-3 col-form-label">
-  {{labelText}}</label>
-  <div class="col-sm-9">
+  <label for="{{labelFor}}" *ngIf="required" requiredLabel
+  class="col-sm-4 col-form-label"  [innerText]="labelText">
+  </label>
+  <label for="{{labelFor}}" *ngIf="!required"
+  class="col-sm-4 col-form-label" [innerText]="labelText">
+  </label>
+  <div class="col-sm-8">
     <ng-select
       [items]="items | async"
       bindLabel="description"
       placeholder="{{placeHolder}}"
       [(ngModel)]="item"
-      (ngModelChange)="onValueChange($event)">
+      (ngModelChange)="onValueChange($event)"
+      required="{{required}}"
+      >
     </ng-select>
   </div>
 </div>

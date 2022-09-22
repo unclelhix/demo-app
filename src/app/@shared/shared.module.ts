@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { RequiredLabelDirective } from './directives/required-label/required-label.directive';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
   ],
   declarations: [
     ...fromComponents.components,
+    RequiredLabelDirective
   ],
   exports:[
     ...fromComponents.components,
@@ -27,6 +29,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    RequiredLabelDirective,
     SharedCommonModule
   ]
 })

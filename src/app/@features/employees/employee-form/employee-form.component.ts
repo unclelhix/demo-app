@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DepartmentGroup } from '@features/departments/shared/models/department-group.model';
 import { Department } from '@features/departments/shared/models/department.model';
 import { DepartmentDropdownService } from '@features/departments/shared/services/department-dropdown.service';
 import { DepartmentService } from '@features/departments/shared/services/department.service';
+import { FormController } from '@shared.common/FormControls';
 
 import { DropDown } from '@shared/models/dropdown.model';
 import { debounceTime, map, Observable } from 'rxjs';
@@ -14,50 +15,75 @@ import { Employee } from '../shared/models/employee.model';
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.css']
 })
-export class EmployeeFormComponent implements OnInit {
-  frmEmloyee:FormGroup = {} as FormGroup;
-  employee:Employee = {} as Employee;
-  departments$ = new Observable<Department[]>;
-  departmentGroup$ =  new Observable<DepartmentGroup[]>;
+export class EmployeeFormComponent implements OnInit, FormController {
 
+
+  frmEmloyee: FormGroup;
+  employee: Employee = {} as Employee;
+  departments$ = new Observable<Department[]>;
+  departmentGroup$ = new Observable<DepartmentGroup[]>;
 
   department: Department = {} as Department;
   departmentGroup: DepartmentGroup = {} as DepartmentGroup;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private departmentService: DepartmentService,
     private departmentGroupService: DepartmentDropdownService) {
 
-      this.frmEmloyee = this.fb.group({
-        firstName:[this.employee ? this.employee.firstName : null, Validators.required],
-        middleName:[this.employee ? this.employee.middleName : null],
-        lastName:[this.employee ? this.employee.lastName : null, Validators.required],
-        departmentGroup:[this.employee ? this.employee.departmentGroup : null, Validators.required],
-      });
+    this.frmEmloyee = this.fb.group({
+      firstName: [this.employee ? this.employee.firstName : null, Validators.required],
+      middleName: [this.employee ? this.employee.middleName : null],
+      lastName: [this.employee ? this.employee.lastName : null, Validators.required],
+      birthDate: [this.employee ? this.employee.birthDate : null],
+      departmentGroup: [this.employee ? this.employee.departmentGroup : null, Validators.required],
+      department: [this.employee ? this.employee.department : null, Validators.required],
+    });
 
-     }
+  }
 
+  fC(name: string): AbstractControl<any, any> {
+    return this.frmEmloyee.get(name)?.value;
+  }
+  get dept(): any{
+    return this.frmEmloyee.get('department')
+  }
+  get fname(): any{
+    return this.frmEmloyee.get('firstName')
+  }
+  formControl(name:string){
+    return this.frmEmloyee.get(name);
+  }
   ngOnInit() {
 
     this.departments$ = this.departmentService
-                        .getAllDepartment()
-                        .pipe(debounceTime(500),map(res=>res.data));
-
-
-  }
-  onSave():void{
-    console.log(this.frmEmloyee.value)
-  }
-  departmentEventHanlder(value: any){
-
-    console.log(value)
-    this.department = value;
-    this.departmentGroup$ = this.departmentGroupService
-    .getByDepartmentId(Number(value.id)).pipe(map(res => res.data));
+      .getAllDepartment()
+      .pipe(debounceTime(500), map(res => res.data));
   }
 
-  departmentGroupEventHanlder(value: any){
-    console.log(value)
+  onSave(): void {
+
+
+    if (this.frmEmloyee.valid) {
+      console.log(this.frmEmloyee.value)
+    }else{
+      Object.keys(this.frmEmloyee.controls).forEach((key: string) => {
+        console.log(key)
+      });
+    }
+  }
+
+  departmentEventHanlder(value: any) {
+    // console.log(value)
+    if (value != null) {
+      this.department = value;
+      this.departmentGroup$ = this.departmentGroupService
+        .getByDepartmentId(Number(value.id)).pipe(map(res => res.data));
+    }
+  }
+
+  departmentGroupEventHanlder(value: any) {
+    // console.log(value)
     this.departmentGroup = value;
   }
 
