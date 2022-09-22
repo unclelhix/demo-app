@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DepartmentGroup } from '@features/departments/shared/models/department-group.model';
 import { Department } from '@features/departments/shared/models/department.model';
 import { DepartmentDropdownService } from '@features/departments/shared/services/department-dropdown.service';
 import { DepartmentService } from '@features/departments/shared/services/department.service';
 import { FormController } from '@shared.common/FormControls';
+import { RequiredLabelDirective } from '@shared/directives/required-label/required-label.directive';
 
 import { DropDown } from '@shared/models/dropdown.model';
 import { debounceTime, map, Observable } from 'rxjs';
@@ -17,7 +18,7 @@ import { Employee } from '../shared/models/employee.model';
 })
 export class EmployeeFormComponent implements OnInit, FormController {
 
-
+  requiredFieldLabels:string[] = [];
   frmEmloyee: FormGroup;
   employee: Employee = {} as Employee;
   departments$ = new Observable<Department[]>;
@@ -25,6 +26,8 @@ export class EmployeeFormComponent implements OnInit, FormController {
 
   department: Department = {} as Department;
   departmentGroup: DepartmentGroup = {} as DepartmentGroup;
+
+  @ViewChildren(RequiredLabelDirective) requiredFields!: QueryList<RequiredLabelDirective>;
 
   constructor(
     private fb: FormBuilder,
@@ -67,9 +70,10 @@ export class EmployeeFormComponent implements OnInit, FormController {
     if (this.frmEmloyee.valid) {
       console.log(this.frmEmloyee.value)
     }else{
-      Object.keys(this.frmEmloyee.controls).forEach((key: string) => {
-        console.log(key)
-      });
+      this.requiredFieldLabels = this.requiredFields.map(x=>x.getRequiredFields(this.frmEmloyee));
+      // Object.keys(this.frmEmloyee.controls).forEach((key: string) => {
+      //   console.log(key)
+      // });
     }
   }
 

@@ -4,6 +4,7 @@
       Employee Form
     </div>
     <div class="card-body">
+      <app-error-messages [requiredFields]="requiredFieldLabels"></app-error-messages>
       <form [formGroup]="frmEmloyee">
 
         <app-dropdown
