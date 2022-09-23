@@ -1,3 +1,44 @@
-<p>
-  table works!
-</p>
+<div class="card">
+  <div class="card-header">
+    {{tableName}}
+  </div>
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5 class="card-title">NGX Pagination</h5>
+      </div>
+      <div>
+        <div class="form-group form-inline">
+          <label class="control-label" for="noOfRows">No. of Rows</label>
+          <select name="noOfRows" class="form-select form-select-sm" aria-label=".form-select-sm example"
+            (change)="onTableSizeChange($event)" >
+            <option *ngFor="let size of tableSize" [ngValue]="size">
+              {{ size }}
+            </option>
+          </select>
+      </div>
+    </div>
+    </div>
+    <table class="table table-striped  table-hover">
+      <thead class="table-dark">
+        <tr >
+          <th *ngFor="let header of columnHeaders">{{header.name}}</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let source of dataSource | paginate : pagingConfig ">
+        <td *ngFor="let columnData of (source | columnOrder: columnHeaders) ">
+          {{ columnData }}
+        </td>
+      </tr>
+    </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+      <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)">
+      </pagination-controls>
+    </div>
+  </div>
+</div>

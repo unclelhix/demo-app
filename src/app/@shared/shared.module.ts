@@ -7,6 +7,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { RequiredLabelDirective } from './directives/required-label/required-label.directive';
+import { ColumnOrderPipe } from './pipes/column-order.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { RequiredLabelDirective } from './directives/required-label/required-lab
   ],
   declarations: [
     ...fromComponents.components,
-    RequiredLabelDirective
+    RequiredLabelDirective,
+    ColumnOrderPipe
   ],
   exports:[
     ...fromComponents.components,
@@ -30,6 +32,7 @@ import { RequiredLabelDirective } from './directives/required-label/required-lab
     ReactiveFormsModule,
     NgSelectModule,
     RequiredLabelDirective,
+    ColumnOrderPipe,
     SharedCommonModule
   ]
 })

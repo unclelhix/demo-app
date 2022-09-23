@@ -1,5 +1,10 @@
-
-  <h1>Test</h1>
-
+<app-table
+[tableName]="'Employee List'"
+[tableSize]="tableSize"
+[pagingConfig]="pagingConfig"
+[columnHeaders]="columnHeaders"
+[dataSource]="dataSource"
+(onPagingChangeValue)="employeePagingEventHandler($event)"
+></app-table>
 
 

@@ -10,6 +10,7 @@ import { RequiredLabelDirective } from '@shared/directives/required-label/requir
 import { DropDown } from '@shared/models/dropdown.model';
 import { debounceTime, map, Observable } from 'rxjs';
 import { Employee } from '../shared/models/employee.model';
+import { EmployeeService } from '../shared/services/employee.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -31,6 +32,7 @@ export class EmployeeFormComponent implements OnInit, FormController {
 
   constructor(
     private fb: FormBuilder,
+
     private departmentService: DepartmentService,
     private departmentGroupService: DepartmentDropdownService) {
 
@@ -48,12 +50,7 @@ export class EmployeeFormComponent implements OnInit, FormController {
   fC(name: string): AbstractControl<any, any> {
     return this.frmEmloyee.get(name)?.value;
   }
-  get dept(): any{
-    return this.frmEmloyee.get('department')
-  }
-  get fname(): any{
-    return this.frmEmloyee.get('firstName')
-  }
+
   formControl(name:string){
     return this.frmEmloyee.get(name);
   }
@@ -65,8 +62,6 @@ export class EmployeeFormComponent implements OnInit, FormController {
   }
 
   onSave(): void {
-
-
     if (this.frmEmloyee.valid) {
       console.log(this.frmEmloyee.value)
     }else{
