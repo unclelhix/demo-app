@@ -23,9 +23,9 @@ export class RequiredLabelDirective implements OnInit {
   getRequiredFields(form: FormGroup){
     this.formGroup = form;
     const formConrolName:string = this.el.nativeElement.htmlFor;
-    console.log(this.el.nativeElement.htmlFor);
-    console.log(this.el.nativeElement);
-    console.log(this.formGroup.get(formConrolName));
+    // console.log(this.el.nativeElement.htmlFor);
+    // console.log(this.el.nativeElement);
+    // console.log(this.formGroup.get(formConrolName));
     if(this.formGroup.get(formConrolName)?.errors != null){
       if(this.formGroup.get(formConrolName)?.errors && this.formGroup.get(formConrolName)?.errors?.['required']){
         return this.el.nativeElement.innerText.replace('*', '');

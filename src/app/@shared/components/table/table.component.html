@@ -27,8 +27,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let source of dataSource | paginate : pagingConfig ">
-        <td *ngFor="let columnData of (source | columnOrder: columnHeaders) ">
-          {{ columnData }}
+        <td *ngFor="let item of (source | columnOrder: columnHeaders) ">
+          {{ item }}
         </td>
       </tr>
     </tbody>

@@ -52,15 +52,12 @@ export class DropdownComponent<T> implements OnInit, OnChanges, ControlValueAcce
       this.touched = true;
     }
   }
-
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
   }
-
   ngOnChanges(changes: SimpleChanges): void {
     this.item = {} as T;
   }
-
   onValueChange(value: any) {
     this.onTouched(); // <-- mark as touched
     this.onChange(value); // <-- call function to let know of a change

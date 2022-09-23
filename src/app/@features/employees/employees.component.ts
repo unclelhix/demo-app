@@ -34,8 +34,13 @@ export class EmployeesComponent implements OnInit {
       name: 'Birth Date',
       value: 'birthDate'
     }
+    // ,
+    // {
+    //   name: 'Action',
+    //   value: "'<a [routerLink]=['/reactiveforms',customer.id,'edit']  class=btn btn-primary btn-sm active role=button aria-pressed=true>Edit</a>'"
+    // }
+  ];
 
-  ]
   constructor(private employeeService: EmployeeService) {
 
     this.pagingConfig = {
@@ -69,21 +74,10 @@ export class EmployeesComponent implements OnInit {
   }
 
   getEmployees(paging: PagingRequest){
-
-    // this.employeeService.getAllEmployeesPaging(paging).pipe(
-    //   map(res => res) // or any other operator
-    // ).subscribe(res => {
-    //   console.log(res)
-    //   this.dataSource = res.data;
-    //   this.pagingConfig.totalItems = Number(res.totalItems);
-    // });
-
     this.employeeService.getAllEmployeesPaging(paging).subscribe((result)=>{
-      console.log(result)
       this.pagingConfig.totalItems = Number(result.totalItems);
       this.dataSource = result.data;
     });
-    console.log(this.pagingConfig)
   }
 
 }

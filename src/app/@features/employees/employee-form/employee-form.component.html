@@ -8,7 +8,6 @@
       <form [formGroup]="frmEmloyee">
 
         <app-dropdown
-
           formControlName="department"
           [items]="departments$"
           [labelFor]="'department'"
@@ -20,7 +19,6 @@
         </app-dropdown>
 
         <app-dropdown
-
           formControlName="departmentGroup"
           [items]="departmentGroup$"
           [labelFor]="'departmentGroup'"
@@ -32,7 +30,6 @@
         </app-dropdown>
 
         <div class="mb-3 row">
-
           <label for="firstName" class="col-sm-4 col-form-label" requiredLabel>First Name</label>
           <div class="col-sm-8">
             <input type="text" class="form-control" id="firstName" formControlName="firstName">
@@ -52,6 +49,7 @@
             <input type="text" class="form-control" id="lastName" formControlName="lastName">
           </div>
         </div>
+
         <div class="mb-3 row">
           <label for="birthDate" class="col-sm-4 col-form-label">Birth Date</label>
           <div class="col-sm-8">
